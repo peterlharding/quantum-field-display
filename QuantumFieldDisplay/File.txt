@@ -1,0 +1,45 @@
+func createAmorphousSurface(size: CGFloat) -> SCNNode {
+    let halfSize = size / 2
+
+    // Create a grid for the surface
+    let rows = 20
+    let columns = 20
+    var vertices: [SCNVector3] = []
+    var indices: [Int32] = []
+
+    for row in 0...rows {
+        for column in 0...columns {
+            let x = -halfSize + (CGFloat(column) / CGFloat(columns)) * size
+            let z = -halfSize + (CGFloat(row) / CGFloat(rows)) * size
+
+            // Amorphous y-value using sine and cosine functions
+            let frequency: CGFloat = 2.0
+            let amplitude: CGFloat = 0.3
+            let y = sin(frequency * x) * cos(frequency * z) * amplitude
+            vertices.append(SCNVector3(x, y, z))
+        }
+    }
+
+    for row in 0..<rows {
+        for column in 0..<columns {
+            let topLeft = row * (columns + 1) + column
+            let topRight = topLeft + 1
+            let bottomLeft = topLeft + (columns + 1)
+            let bottomRight = bottomLeft + 1
+
+            indices.append(contentsOf: [
+                Int32(topLeft), Int32(bottomLeft), Int32(topRight),
+                Int32(topRight), Int32(bottomLeft), Int32(bottomRight)
+            ])
+        }
+    }
+
+    let vertexSource = SCNGeometrySource(vertices: vertices)
+    let element = SCNGeometryElement(indices: indices, primitiveType: .triangles)
+
+    let geometry = SCNGeometry(sources: [vertexSource], elements: [element])
+    geometry.firstMaterial?.diffuse.contents = UIColor.green.withAlphaComponent(0.6) // Surface color
+    geometry.firstMaterial?.isDoubleSided = true
+
+    return SCNNode(geometry: geometry)
+}

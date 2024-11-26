@@ -1,6 +1,37 @@
+# IDEs
+.vscode/
+.idea/
+
+# macOS
+.DS_Store
+
+# Archives
+*.gz
+*.tar
+*.tz
+*.zip
+
+# Logs
+*.log
+
+# Junk
+*.x
+
+# Sensitive
+
+
+
 # Xcode
 #
 # gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
+
+
+# Xcode Specific
+*.xcuserstate
+*.xcworkspace
+*.xcodeproj/project.xcworkspace/
+*.xcodeproj/xcuserdata/
+*.xcodeproj/project.xcworkspace/xcuserdata/
 
 ## User settings
 xcuserdata/
@@ -37,7 +68,9 @@ playground.xcworkspace
 # you should judge for yourself, the pros and cons are mentioned at:
 # https://guides.cocoapods.org/using/using-cocoapods.html#should-i-check-the-pods-directory-into-source-control
 #
-# Pods/
+Pods/
+Podfile.lock
+
 #
 # Add this line if you want to avoid checking in source code from the Xcode workspace
 # *.xcworkspace
@@ -47,6 +80,7 @@ playground.xcworkspace
 # Add this line if you want to avoid checking in source code from Carthage dependencies.
 # Carthage/Checkouts
 
+Carthage/
 Carthage/Build/
 
 # fastlane
@@ -58,5 +92,23 @@ Carthage/Build/
 
 fastlane/report.xml
 fastlane/Preview.html
+fastlane/screenshots
 fastlane/screenshots/**/*.png
 fastlane/test_output
+
+# Swift Package Manager
+.build/
+Packages/
+
+
+# Exclude Certificates & Provisioning Profiles
+*.mobileprovision
+*.provisionprofile
+*.cer
+*.p12
+*.pem
+
+# Xcode Generated Files for Signing
+DerivedData/
+*.xcconfig
+
